@@ -1,0 +1,27 @@
+Abrir VMware Workstation Pro 17
+> Advanced
+> N
+> I Will install the operating system later
+> Microsoft Windows > Windows Server 2019
+> VM Name > SRVDC01 > Location > mkdir en HDD
+> N > N > N > N > N
+> Size > 60GB > Store virtual disk as a single file
+> N
+> Finish
+
+Edit virtual machine settings
+	> CD/DVD > Use ISO image file
+	> Ok
+
+Play > Ctrl G > Any letter
+> Español
+> Data Center Experiencia de Escritorio
+> Avanzado
+> N > N > etc no recuerdo
+
+Abrir Administrador de Servidores > Servidor Local >
+> Validar Zona horaria > Lima Quito > UTC -5
+> Validar Ethernet >
+> Ethernet0 > click derecho > Propiedades > IPv6 >
+> quitar el check > acept
+
