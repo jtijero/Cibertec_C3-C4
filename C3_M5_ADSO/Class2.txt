@@ -25,3 +25,75 @@ Abrir Administrador de Servidores > Servidor Local >
 > Ethernet0 > click derecho > Propiedades > IPv6 >
 > quitar el check > acept
 
+al descativar IPV6 al tener ahora pocos equipos no se nota el beneficio pero cuando haya mas cantidad
+las consultas que se hacen a nivel de dirección IP prácticamente van a buscar el de mayor categoría ósea IPV6, como esta desactivado..
+la búsqueda va directo a IPV4, esos milisegundos se van a notar menciona el prof
+
+Ingresar al Firewall
+> Configuracion avanzada > Reglas de entrada
+> Buscar > Archivos de impresoras compartidos > ICMPv4 de entrada > Doble click > check Habilitado > Aplicar
+> Redes principales: destino inaccesible fragment > asegurar que este habilitado
+> Supervisión de maquina virtual > ICMPv4 > Habilitado > Aplicar
+
+Nombre de Equipo
+> Descripción del Equipo > Cambiar > SRVDC01 > reiniciar
+
+RED 	192.168.10.0
+MASK	255.255.255.0	/24
+DOM	CIBERTEC.PE
+
+HOST 	 	IP  		DESCRIPCION
+SRVDC01 	192.168.10.2 	Controlador de dominio principal
+SISTEMAS1 	192.168.10.11 	Equipo Cliente
+
+Colocar dirección IP
+> Servidor local > Ethernet0 > Asignada por DHCP > Ethernet0 > click derecho > Propierties
+> IPv4 > Static > 192.168.10.2
+
+
+> Panel > Agregar roles y características > N > N > validamos la IP
+> Servicios de dominio de Active Directory > Agregar características
+> Servidor DNS
+> Servidor Web (IIS)
+> N > N > N > check a Reiniciar automáticamente el servidor de destino en caso necesario
+
+cuando este listo
+> cerrar > Banderita > Promover
+> N > agregas contraseña > N > N > reinicio
+
+Se necesita ahora cambiar algunos parámetros menciona
+Entrando a Ehternet > IPv4 > en servidor DNS aparece > 127.0.0.1 > cambiar > 192.168.10.2
+acept > cerrar
+
+Admin Server > DNS > Herramientas > DNS > SRVDC01 >
+> Zonas de búsqueda directa > flechita desplegar > Cibertec.pe > se encuentra srvdc01 > que seria el nombre del servidor y también tenemos la ip
+
+Ahora zona inversa que no es necesario en este momento pero por buenas practicas se hace >
+> Zonas de búsqueda inversa > click derecho > Nueva Zona >
+> N > todo N hasta Id. de red > 192.168.10
+Vemos que en la parte de abajo este es el orden o el formato en que se agregan la zona inversa
+En Linux eso configuramos en ese formato menciona > y a diferencia de Windows con interfaz grafica solo nos pide el dato de Id. de red >
+> N > N > Finish
+
+Falta agregar tu servidor
+> Regresar a Cibertec.pe > click a srvdc01 (vas a tu host ) > check a Actualizar registro del puntero PTR asociado >
+> Aplicar > Aceptar
+
+> en zona inversa > carpeta 10.168.192.in-addr.arpa > click derecho en espaico en blanco > actualizar> 
+> debe aparecer la IP y el nombre
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
