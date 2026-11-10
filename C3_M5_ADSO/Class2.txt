@@ -83,6 +83,87 @@ Falta agregar tu servidor
 > debe aparecer la IP y el nombre
 
 
+HACER CONFIGURACIONES DE SERVICIO IIS
+
+Nav Negro > Herramientas (Tools) > Administrador de Internet Information Services (IIS) >
+VERIFICAR > SRVDC01 (CIBERTEC\Administrador)
+> Sitios > Default Web Site
+> Abrir navegador explorer > aceptar > 
+> escribir localhost > debe cargar
+> escribir Cibertec.pe > debe cargar
+> 192.168.10.2 > debe cargar
+
+> escribir www.cibertec.pe > agregar > agregar > cerrar
+> no la ubicara porque no conoce que es www
+> Para que se vea de esa forma tu tienes que configurar tu dns >
+
+> Tools > DNS > Administrador de DNS
+> Zonas de búsqueda.. > cibertec.pe > click derecho espacio en blanco > Alias CNAME > www
+> examinar > SRVDC01 > Aceptar > buscar directorio Cibertec.pe > srvdc01 Host A
+> Acept > Acept
+
+Descargar Web_Demos.rar
+
+VMWARE options > VM > Settings >  or  > Clcik derecho nombre de VM > Settings
+> Options > Guest Isolation
+
+instalar SETUP64.EXE PARA COPIAR Y PEGAR ARCHIVOS DE maquina local a vm
+> Completa > reboot
+> pegar 4 carpetas >
+
+Admin server > Tools > IIS > 
+> Como puedo hacer que ya no me aparezca esto y me aparezca la pagina que me han dado >
+> Wind + E > Disco C > inetpub > wwwroot > 
+> mkdir ISS > cd ISS > colocar pags allí
+> recargar pagina de www.cibertec.pe > esperar a que cargue > agregar agregar cerrar 
+
+PRA CREAR SITIO NUEVO, PRIMERO EN MI DNS TENEMOS QUE CREAR ESE DOMINIO
+ Admin Server > Tools > DNS > Zoonas de búsqueda directa > click derecho 
+> Zona nueva > N > N > N > petology.com > N > N > Finish >
+Verificar que se añadió, "pero como aquí en este dominio yo no voy a tener a mi equipo tal como está" y no voy a crear un alias >
+> Se necesita agregar mi Host con extensión con www ´para que cargue con ese dominio >
+> click derecho en Directorio petology.com > Nuevo Host > www > Dirección IP > 192.168.10.2 >
+> Agregar host > acept
+
+> Tools > > Administrador de IIS > Sitios > click derecho > Agregar sitio web > 
+> Nombre del sitio > Petology > Grupo de Aplicaciones > Seleccionar > DefaultAppPool
+> Mover carpetas a wwwroot >
+> Seleccionar ruta petology 
+> Probar configuración > Autorización incompleta > cerrar
+> Conectar como > Usuario especifico > Establecer > Administrador y credenciales de inicio de sesión del wind server >
+> Probar configuración > todo correcto
+> Nombre de host > www.petology.com > acept
+> Ir a navegador, nueva pestaña > www.petology.com > agree agree acept > 
+
+> https > class3
+
+> Tools > DNS > Zona abierta > nwe zone > Sungla
+> en directorio sungla > click derecho > agregar host > www > dirección ip 192.168.10.2 >
+> Tools > IIS > Sitios > click derecho > Agregar site web >
+> Sungla > Select > DefaultAppPool 
+> buscar carpeta sungla 
+> Conectar como > usuario > Administrador...
+> si desean se puede apuntar a la IP > Dirección Ip > 192.168.10.2 
+> www.sungla.pe > 
+> examinar site
+
+IIS > Sungla > click derecho > Edit > también se puede 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
