@@ -1,0 +1,25 @@
+Descargar virtual box >
+
+
+Descargar W10_AREQUITECTURA_REDES.ova >
+	https://drive.google.com/drive/u/0/folders/1VOtvg3ZNCgBrt4viBpvr8EvA9ND4yEUe 
+
+IOS_CISCO > algunas imágenes se utilizaran con el GNS3 >
+	https://drive.google.com/drive/u/0/folders/1nY-0OBpvjM3uotrCSySZ3OF4T2x84pUh
+
+Descargar - Actualizar Packet Tracert >
+	https://www.netacad.com/es/packet-tracer-download
+	https://www.netacad.com/resources/lab-downloads?courseLang=es-XL
+
+Descargar GNS3 >
+	https://www.gns3.com/software/download
+	https://www.gns3.com/software/download-vm
+		> VirtualBox
+		> VMware Workstation and Fusion
+
+
+Simulador de equipos Huawei también > eNSP
+
+
+INICIAR VM DE WINDOWS 10 EN VIRTUAL BOX
+w10 > 12345 > Network yes > WonderShare EdrawMax Pro > 
