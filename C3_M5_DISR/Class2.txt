@@ -1,0 +1,96 @@
+https://drive.google.com/drive/u/1/folders/1xg9Wq4FF8-6hCIlnxCniOkmQ8SqHunBF
+DESCARGAR TALLER > enlace > Diseño de redes > sesion2 > Taller 2 Planificación
+
+TEMA 2 PLANIFICACION > 
+que es > organizar la solución teniendo como base la preparación previa >
+> Analisis del lugar > Equipo de trabajo cada uno de acuerdo a su conocimiento > Equipo de trabajo de TI >
+
+Tecnico y/o ingeniero en redes
+Electricidad
+Ciberseguridad NOC
+
+> Análisis de requerimientos > 
+REQUERIMIENTOS
+Entorno de infraestructura de red
+Reparación, reemplazo, actualización o mantenimiento.
+Modificación de infraestructura física
+Áreas afectadas
+Tiempo estimado de solución
+Equipamiento necesario
+Herramientas de software
+Servicios necesarios
+Documentación de la red
+Información de proveedores y soporte
+Especialistas involucrados
+Horarios de actividad laboral
+Otros detalles
+
+Donde generar un respaldo menciona, conocimientode SO básicos como Linux server, Windows server
+Auditoria, conocer a proveedores de soft y hardw
+
+HERRAMIENTAS DE SOFTWARE
+Monitoreo de red
+Gestión de red
+Acceso WEB y DNS
+Acceso remoto
+Escaneo de red
+Diagnóstico de vulnerabilidades
+Gestión y cliente VPN
+Análisis de cableado estructurado
+
+EQUIPAMIENTO
+Kit de herramientas (básico o completo)
+Equipos de certificación y cableado estructurado
+Cables y conexiones (Par trenzado, fibra, consola)
+Equipos inalámbricos (Access point, WLC, Router, otros)
+Almacenamiento externo (Sata, SSD, nube, otros)
+Analizador de espectro (WiFi, 5G)
+Equipos de infraestructura (Switch, router, otros)
+Equipos de red para seguridad (Firewall y otros)
+Elaboración propia
+
+topolog1 simple con consola >
+Nos muestrsa un oruter cisco 
+> inicia Putty > Serail COM1 > Open [cerrar y entrar hasta que cargue router]
+> tera term > Serial > COM1... > ok > enter > n
+
+> pUTTY > en> EN
+> ip interface brief
+
+Minimiza > levantar el GNS3 >
+GNS3 > esperar a que termine de cargar > Project > New Project (aparecerá) >
+> Name > cualquiernombre >
+
+[ 
+
+> Aquí va a servir la carpeta comprimida descargada de GNS3.VM.VMWARE.Worksation
+
+or 
+
+> Edit > Preferences > GNS3 VM > downloaded here 
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
