@@ -112,9 +112,18 @@ El error de wpcap.dll se soluciona instalando Npcap
 > Cerrar y reiniciar GNS3
  [todo se resolveria asignando los recursos de la gns3vm para el IOS CISCO pero se ve la manera de hacerlo tal cual]
 
-min38
 
+> minimizar GNS3 VM
+> averiguando.requisitos2 > name de New Project al reiniciar >
+> OK
+> Edit > Preferences > IOS routers > new > (ahora me aparece una carpeta dedicada) > buscar la que estamos usando >
+Name > ROUTER-DISR1-c7200 > sigue apareciendo error del sistema 
 
+Reinstalar Npcap con modo de compatibilidad
+> ejecutar el instalador de Npcap 
+> check en Install Npcap in WinPcap API-compatible Mode
+
+or Instalar WinPcap 4.1.3 clásico
 
 
 
