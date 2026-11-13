@@ -125,8 +125,22 @@ Reinstalar Npcap con modo de compatibilidad
 
 or Instalar WinPcap 4.1.3 clásico
 
+> minizar GNS3 VM
+> averiguando.requisitos3 >
+> Preferences > IOS routers > CISCO > NEW > Run this IOS router on my local computer > Next > New Image > Browse > C7200 por ejemplo menciona >
+> Name > ROUTER-DISR1-c7200 > Next > 512mb >
+> slot 0 > agregar puerto gigabit > C7200-IO-GE-E
+> slot 1 > PA-GE
+> Next
+> Idle-PC Finder > Ahora si funciona, bien
 
+Idle-PC value 0x60210c60 has been found suitable for your IOS image > OK
+> Finish
+> Apply > Ok
 
+MISMO OVA de drawmax > https://drive.google.com/drive/u/0/folders/1VOtvg3ZNCgBrt4viBpvr8EvA9ND4yEUe
+> se utilizara aquí
+dormir
 
 
 
