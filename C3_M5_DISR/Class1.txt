@@ -22,4 +22,20 @@ Simulador de equipos Huawei también > eNSP
 
 
 INICIAR VM DE WINDOWS 10 EN VIRTUAL BOX
-w10 > 12345 > Network yes > WonderShare EdrawMax Pro > 
+w10 > 12345 > Network yes 
+
+> No necesario > eNSP > simulador de equipos Huawei > 
+
+> WonderShare EdrawMax Pro > 
+>> Dibuejo en blanco > Texto > DISEÑO DE UNA RED EMPRESARIAL"
+> Mas Simbolos > Diagrama de red > 
+> construye un diagrama interesante mientras nos explica 
+
+1h 10 min
+en su proyecto le vamos a llamar > IDF > Cuarto de telecom
+
+
+modulo transceiver, full duplex, ´por un extremo manda datos y pior el otro lo recibe > se conecta como una memoria usb y de esa manera se interconecta un router con switch o switch con swicth
+
+> CARPETA ISOS 
+> UTILITARIO > DISEÑO DE REDES
