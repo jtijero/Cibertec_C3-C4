@@ -71,9 +71,48 @@ or
 
 ]
 
+> Extraer carpeta para tener GNS3 VM
+> Abrir VMWARE WORKSTATION > open > buscar GNS3 VM > 
+> iMPORTAR vm > GNS3-VM-DISR1 > Debe aparecer en Library > (no iniciarla)
+
+Habilitar la GNS3 VM en GNS3
+> GNS3 > Edit > Preferences > GNS3 VM >
+Configurar y habilitar maquina 
+> check en Enable the GNS3 VM > 
+> Virtualization engine > VMWARE Workstation 
+> VM name > el ova que importamos > en mi caso > GNS3-VM-DISR1
+> Apply 
+> Minimizar VMware ya que se inicio esa vm >
+> GNS3 > Ok > debería estar en Verde en Servers Summary la GNS3 VM
+
+Al arrastrar un equipo de red al área de trabajo y encenderlo, GNS3 utilizará los recursos de esta máquina virtual automáticamente.
 
 
+Compartir los IOS_CISCOS
+> Descargar > https://drive.google.com/drive/u/0/folders/1vApn1VDliv1zny-W1Cd3pdNWbSSYm66s 
 
+Modificar Preferences routers >
+
+> Preferences > IOS routers > CISCO > NEW > Run this IOS router on my local computer > Next > New Image > Browse > C7200 por ejemplo menciona >
+> Name > ROUTER-DISR1-c7200 > Next > 512mb >
+> slot 0 > agregar puerto gigabit > C7200-IO-GE-E
+> slot 1 > PA-GE
+> Next
+> Idle-PC finder
+
+aparecerá que falta un recurso
+
+
+INSTALAR Npcap > 
+El error de wpcap.dll se soluciona instalando Npcap
+
+ > https://npcap.com/#download > Npcap 1.90 installer
+> opciones por defecto > Install
+
+> Cerrar y reiniciar GNS3
+ [todo se resolveria asignando los recursos de la gns3vm para el IOS CISCO pero se ve la manera de hacerlo tal cual]
+
+min38
 
 
 
