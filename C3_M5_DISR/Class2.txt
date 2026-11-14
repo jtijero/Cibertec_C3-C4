@@ -140,7 +140,59 @@ Idle-PC value 0x60210c60 has been found suitable for your IOS image > OK
 
 MISMO OVA de drawmax > https://drive.google.com/drive/u/0/folders/1VOtvg3ZNCgBrt4viBpvr8EvA9ND4yEUe
 > se utilizara aquí
-dormir
+
+
+Después de apagar todo porque fui a dormrir >
+> Abrir Workstation pro > Edit virtual machine settings > Options > Advanced > 
+> Check en Disable side channerl mitigations for Hyper-V enabled hosts
+> OK
+
+Desactivar integridad de memoria que había activado > 
+> Windows + buscar > Seguridad de Windows > Seguridad del dispositivo > Detalles de Aislamiento de núcleo
+> Desactivar Integridad de la memoria
+
+
+> de paso actualizar deskflow para estarmas cómodo > Deskflow +kdeconnect >}
+https://github.com/deskflow/deskflow/releases/tag/v1.27.0
+
+Restaurar el Virtual Network Editor de VMware
+> Edit > Virtual Network Editor > Change Settings
+> clic en Restore Defaults 
+> ok > cerrar vmware
+
+
+Apagar el hipervisor desde el arranqu
+> Windows +buscar >cmd > Ejecutar como administrador
+
+> bcdedit /set hypervisorlaunchtype off
+> ENTER
+> reiniciar pc
+
+
+> conectar deskflow
+> abrir kdeconnect ya conectado
+> abrir VMWARE Workstation > no ejecutar nada
+> GNS3 en modo Administrador > Si
+> Abrira la GNS3-VM-DISR1
+
+[todo de manera correcta entonces]
+
+> minimizar 
+> new Project > averiguando.requisitos4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
