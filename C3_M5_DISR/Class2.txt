@@ -183,11 +183,69 @@ Apagar el hipervisor desde el arranqu
 
 
 
+Ahora si recién puedo continuar con la clase > divagé
 
 
+> Edit > Preferences > Virtual Box > New > 
+> Run this VirtualBox VM on my local computer > Next > VM list > "w10"
+> check en Use as a linkled base VM
+> Finish > Edit 
+> check en Start Vm in headless mode
+> Network > 
+> Check en Allow GNS3 to use any configured VirtualBox adapter 
+> Ok
+> Apply > OK
 
+> Minimizar y Abrir VirtualBox sin prender ninguna maquina
+> 
 
+EN EL ESCENARIO
+> NAv Browse and all device > W10 > arrastramops pc al escenario > W10-1
+> arrastrar > W10-2
+> Ethernet Switch > 
+> pide seleccionart el recurso si pc Local o en GNS3-VM-ISR1 de VMWARE Workstation, selecciono local siguiendo tal cual el prof
+> NAV Browse Routers > ROUTER-ISR1-c7200
+> Nav Add a link > conectar primer puerto con el segundo > evitar verdes >
 
+> w10-1 > clic derecho > start >
+
+Genera error > VirtualBox VM was not saved from GNS3 > debido a que esa vm la puse en pausa creo 
+
+> Virtual Box > diec Guardada > debe decir Apagada
+> en mi caso la apago iniciando la vm y luego shutdown dentro de la vm >
+> GNS3 > clic derecho w10-1 > start >
+> sigue saliendo error > Virtual Box >
+> clic derecho a w10-1 y w10-2 > Descartar el estado guardado > acept
+> minimizar
+
+> GNS3 > clic derecho w10-1 > start >
+> VirtualBox Headless Frontend > Permitir
+
+> R1 > clic derecho > console > se iniciara Solar-Putty free tool > ENTER
+se vera > R1#
+
+R1# show versión > ENTER ENTER…
+se compara el simulador con una conexión real a un router cisco con Putty >
+
+> VirtualBox > w10-1 > Nav superior > Mostrar >
+> contraseña > 12345
+
+> Solar Putty > R1# > show ip interface brief >
+R1# config t
+R1(config)# int g0/0
+R1(config-if)# ip add 192.168.10.1 255.255.255.0
+R1(config-if)# no shut
+> ENTER > minimizar
+
+W10-1 > Windows+R > ncpa.cpl 
+or clic derecho Wind > ejecutar > ncpa.cpl
+> Ehternet > clic derecho > Ipv4 > IP address >
+> 192.168.10.10
+> Subnet > 255.255.255.0
+> default Gateway > 192.168.10.1
+> OK
+> Windows + R > cmd > ping al puerto del router >
+ping 192.168.10.1 > TODO BIEN
 
 
 
