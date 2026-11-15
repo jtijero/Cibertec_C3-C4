@@ -1,0 +1,11 @@
+En Edge > edge://settings/system
+
+> Inicio Rapido > apagar
+> eguir ejecutando extensiones y aplicaciones en segundo plano > apagar
+
+En Chrome > chrome://settings/system
+> Rendimiento 
+> AHorro de memoria > Maximo 
+> Precargar paginas > apagar
+
+Shift + Apagar pc >

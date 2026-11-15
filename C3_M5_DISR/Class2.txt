@@ -277,10 +277,33 @@ Interrupt Moderation
 >ok
 > cmd > ipconfig /realse y /flushdns
 
+or 
+
+> descargar carpeta en vm-eNSP
+> https://drive.google.com/drive/folders/1Hshv03kn70S5pApF3gCUF47m-yogcHwa?usp=drive_link
+> desempaquetar > instalr requisitos previos e instalar eNSP
 
 
+> requisitos furutros VMware y VirtualBox > ya lo hicimos
 
+> menciona un proyecto al final del modulo 1h 20
+> implementar con VMware una topología donde se brinda servicios dns, dhcp, enrutamiento.. de paginas web > exactamente lo mismo que ADSO > 
+>https://drive.google.com/drive/folders/148zSz2Uz_sgfp3aj7wtY2LleGLDanmED
 
+> abro VMWARE DELL 
+> abro Virtual Box Dell
+> GNS3
+> lanza error snapshots al intentar open Project averiguando.requisitos4 >
+> A differencing image of snapshot could not be found 
+> Could not find an open hard disk with UUID
 
+> elminar snapshots > cerrar GNS3 > Virtual Box > seleccionar w10 (GNS3 Linked Base for clones) 
+> Nav Detalles > Nav Instantaneas > clic derecho en name > Elminar > confirmar > La máquina debe quedar sin ningún snapshot.
 
+> GNS3 como administrador > cerrar ventana emergente > file > open Project > averiguando.requisitos4 > aparece mismo error > 
+
+Aprendizaje, Regla para clones enlazados, la vm que se use no se debe abrir desde virtual box nunca mas y será exclusiva de gns3 
+
+> cerrar > abrir gns3 como Adm >
+> new Project > averiguando.requisitos5
 
