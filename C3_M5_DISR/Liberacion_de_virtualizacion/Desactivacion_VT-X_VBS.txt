@@ -1,0 +1,177 @@
+Apuntes mejorados con IA de manera excepcional:
+
+HITO > LIBERACION DE VIRTUALIZACION VT-X Y DESACTIVACION PROFUNDA DE VBS EN WINDOWS 11 24H2 >
+que es > resolver la lentitud extrema en máquinas virtuales (símbolo de tortuga verde en VirtualBox / emulación por software) liberando las instrucciones de hardware VT-x secuestradas por el hipervisor nativo >
+> Analisis del entorno > Equipos de laboratorio y herramientas de conexion >
+
+Maquina Principal (Host bloqueado)
+Acer Aspire AG15-71P
+Intel Core i5-13420H (13ava Gen)
+16GB RAM DDR5
+512GB SSD NVMe
+Windows 11 Pro compilacion 26200 (24H2)
+
+Maquina Secundaria (Soporte / Servidor Remoto)
+Dell potenciada
+Intel Core i5 (10ma Gen)
+16GB RAM DDR4
+256GB SSD + 495GB HDD (para alojar VMs pesadas)
+
+Herramientas de flujo cruzado
+Deskflow (pasar mouse y teclado entre pantallas)
+KDE Connect (compartir portapapeles y capturas de pantalla)
+
+> Analisis del problema inicial >
+SINTOMAS Y SOSPECHAS
+Las VMs recién creadas corren extremadamente lento.
+Aparece el icono de la tortuga verde en VirtualBox (Execution Engine: Native API, sin VT-x).
+Sospecha inicial > El antivirus corporativo Sophos a nivel de kernel + FortiClient VPN del trabajo part-time (callcenter) aislaban la RAM y bloqueaban la hipervirtualización.
+
+[
+> Alternativa planteada en caso de bloqueo total irreparable en máquina principal:
+Arquitectura Cliente/Servidor en GNS3 o EVE-NG >
+> En Laptop Dell (Servidor) > levantar GNS3 VM > obtener IP local (ej. 192.168.1.X)
+> Cambiar rutas por defecto a disco duro de 495GB para no llenar el SSD de 256GB:
+  > VMware Workstation > Edit > Preferences > Workspace > Default location for virtual machines > Browse > ruta en HDD 495GB
+  > VirtualBox > Archivo > Preferencias > General > Carpeta predeterminada de máquinas > ruta en HDD 495GB
+  > GNS3 > Edit > Preferences > General > Local paths > My Projects / My images > ruta en HDD 495GB
+> En Laptop Acer (Cliente) > GNS3 > Edit > Preferences > Server > Main server > desmarcar Enable local server > Remote servers > agregar IP de la Dell > controlar todo desde la Acer sin consumir su RAM.
+]
+
+
+FASE 1: DIAGNOSTICO Y PRIMEROS INTENTOS ESTANDAR >
+
+Verificar estado del hipervisor >
+> Windows + R > msinfo32 > ENTER
+> bajar al final de Resumen del sistema >
+> Estado de arranque seguro > Desactivado
+> Seguridad basada en virtualización (VBS) > En ejecución
+> "Se detectó un hipervisor. No se mostrarán las características necesarias para Hyper-V."
+
+Intento 1: Apagado básico de características y arranque >
+> Windows + buscar > Seguridad de Windows > Seguridad del dispositivo > Detalles de aislamiento del núcleo >
+> Integridad de memoria > Desactivado
+
+> Windows + R > optionalfeatures > ENTER
+> Verificar que estén desmarcadas:
+  > Hyper-V
+  > Plataforma de máquina virtual
+  > Plataforma de hipervisor de Windows
+  > Subsistema de Windows para Linux (WSL)
+  > Espacio aislado de Windows (Windows Sandbox)
+> [Ya se encontraban desactivadas todas]
+
+> Windows + buscar > cmd > Ejecutar como administrador >
+> bcdedit /set hypervisorlaunchtype off > ENTER
+> reiniciar pc
+
+
+FASE 2: ESCALAMIENTO A DIRECTIVAS DE GRUPO (GPO) Y REGISTRO >
+[Al reiniciar y verificar con Windows + R > msinfo32 > VBS sigue diciendo "En ejecución"]
+
+Intento 2: Deshabilitar por Directiva de Grupo Local >
+> Windows + R > gpedit.msc > ENTER
+> Configuración del equipo > Plantillas administrativas > Sistema > Device Guard >
+> doble clic en Activar la seguridad basada en virtualización >
+> seleccionar Deshabilitada > Aplicar > Aceptar
+> reiniciar pc >
+> msinfo32 > sigue apareciendo "En ejecución"
+
+Intento 3: Modificación directa en Regedit y apagado de Credential Guard / LSA >
+> Windows + R > regedit > ENTER
+> navegar a > HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\DeviceGuard
+> verificar EnableVirtualizationBasedSecurity > ya está en 0x00000000 (0)
+> [pero se observa que RequireMicrosoftSignedBootChain y WasEnabledBy están en 1]
+
+> Windows + buscar > cmd > Ejecutar como administrador >
+> bcdedit /set hypervisorlaunchtype off > ENTER
+> reg add "HKLM\SYSTEM\CurrentControlSet\Control\Lsa" /v LsaCfgFlags /t REG_DWORD /d 0 /f > ENTER
+> reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\CredentialGuard" /v Enabled /t REG_DWORD /d 0 /f > ENTER
+> La operación se completó correctamente en los tres.
+
+
+FASE 3: AUDITORIA DE EVENTOS Y SERVICIOS (DESCUBRIMIENTO DE LA CAUSA RAIZ) >
+
+Antes y después de reiniciar se audita el sistema para confirmar si Sophos es el culpable >
+> Windows + R > eventvwr.msc > ENTER
+> Registros de Windows > Sistema >
+> Se detecta evento Wininit (Id. 12) > "LSASS.exe se inició como un proceso protegido con nivel: 4."
+> Se detectan eventos IsolatedUserMode (Id. 1 y 5) y LSA (LsaSrv) (Id. 6156) y Wininit (Id. 24).
+
+Auditoría de servicios locales >
+> Windows + R > services.msc > Exportar lista a archivo .txt (eventos.txt) >
+> Analizando servicios instalados en toda la máquina:
+  > NO existe ningún servicio de Sophos instalado en el sistema (descartado mito del antivirus del callcenter).
+  > Único antivirus activo > Servicio de antivirus de Microsoft Defender.
+  > Software corporativo presente > FortiClient VPN Service Scheduler y agentes DLP (rpcdlp, rpchdp, Web Monitoring Service). Ninguno usa ni exige VBS.
+  > Servicios activos que retenían el hipervisor > Servicio de host HV, Microsoft Passport, Aislamiento de claves CNG.
+
+[
+CONCLUSION DEL DIAGNOSTICO >
+En Windows 11 Pro 24H2 (build 26200), cuando VBS y Credential Guard se activan, Windows inyecta una bandera de bloqueo directamente en la memoria UEFI (NVRAM) de la placa base y usa un lanzador independiente (vsmlaunchtype). Por eso ignora el Regedit y el bcdedit normal en cada reinicio.
+]
+
+
+FASE 4: SOLUCION DEFINITIVA > PURGA DE NVRAM UEFI CON SECCONFIG.EFI >
+
+Paso 1: Apagar bloqueo de Defender >
+> Seguridad de Windows > Protección contra virus y amenazas > Administrar la configuración >
+> Protección contra alteraciones > Desactivado
+
+Paso 2: Apagar motor VSM y firmas de DeviceGuard >
+> Windows + buscar > cmd > Ejecutar como administrador >
+> bcdedit /set hypervisorlaunchtype off > ENTER
+> bcdedit /set vsmlaunchtype off > ENTER
+> reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v RequireMicrosoftSignedBootChain /t REG_DWORD /d 0 /f > ENTER
+> reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v HyperVVirtualizationBasedSecurityOptout /t REG_DWORD /d 1 /f > ENTER
+
+Paso 3: Inyectar herramienta SecConfig.efi de Microsoft en la partición EFI >
+> en el mismo CMD como Administrador >
+> mountvol X: /s > ENTER
+> copy %WINDIR%\System32\SecConfig.efi X:\EFI\Microsoft\Boot\SecConfig.efi /Y > ENTER (1 archivos copiados)
+> bcdedit /create {0cb3b571-2f2e-4343-a879-d86a476d7215} /d "DebugTool" /application osloader > ENTER
+> bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} path "\EFI\Microsoft\Boot\SecConfig.efi" > ENTER
+> bcdedit /set {bootmgr} bootsequence {0cb3b571-2f2e-4343-a879-d86a476d7215} > ENTER
+> bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} loadoptions DISABLE-LSA-ISO,DISABLE-VBS > ENTER
+> bcdedit /set {0cb3b571-2f2e-4343-a879-d86a476d7215} device partition=X: > ENTER
+> mountvol X: /d > ENTER
+
+Paso 4: Reinicio y confirmación en pantalla UEFI >
+> reiniciar pc >
+> Aparece pantalla negra de sistema > Virtualization Based Security Opt-out Tool >
+> Presionar F3 (o Fn + F3) para confirmar desactivación de Credential Guard y VBS >
+> Aparece mensaje > "Successfully chose to opt-out of Virtualization Based Security. Press any key to continue" > presionar cualquier tecla.
+
+[
+Nota de incidente al iniciar sesión >
+Debido a que se destruyó la bóveda de Credential Guard (LSA ISO), Windows invalidó el PIN anterior por seguridad.
+> Solución > Iniciar sesión enviando código al correo electrónico > configurar nuevo PIN > entra al escritorio normal.
+]
+
+
+VERIFICACION FINAL Y CIERRE >
+
+> Windows + R > msinfo32 > ENTER
+> Bajar al final de Resumen del sistema >
+> Seguridad basada en virtualización > No habilitado > BIEN
+> Ahora aparecen liberadas las instrucciones del procesador:
+  > Hyper-V - Extensiones de modo de monitor de VM > Sí
+  > Hyper-V - Extensiones de traducción de direcciones de segundo nivel > Sí
+  > Hyper-V - Virtualización habilitada en el firmware > Sí
+  > Hyper-V - Protección de ejecución de datos > Sí
+> TODO CORRECTO
+
+[
+OPCIONAL: Comandos de limpieza o reversión futura >
+
+> Si ya no se desea ver la pantalla negra de SecConfig.efi en el arranque:
+  > cmd (Admin) > bcdedit /delete {0cb3b571-2f2e-4343-a879-d86a476d7215}
+
+> Si en el futuro se requiere volver a blindar Windows con VBS (Modo Trabajo estricto):
+  > cmd (Admin) >
+  > bcdedit /set hypervisorlaunchtype auto
+  > bcdedit /set vsmlaunchtype auto
+  > reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v RequireMicrosoftSignedBootChain /t REG_DWORD /d 1 /f
+  > reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v HyperVVirtualizationBasedSecurityOptout /t REG_DWORD /d 0 /f
+  > Activar Protección contra alteraciones e Integridad de memoria en Seguridad de Windows > Reiniciar.
+]

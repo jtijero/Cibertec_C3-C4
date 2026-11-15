@@ -247,7 +247,11 @@ or clic derecho Wind > ejecutar > ncpa.cpl
 > Windows + R > cmd > ping al puerto del router >
 ping 192.168.10.1 > TODO BIEN
 
+Mismos pasos dentro de topología de packet tracer
+ping 192.168.10.1 > TODO CORRECTO
 
+Tener la mayoría de programas simuladores
+> eNSP <
 
 
 
