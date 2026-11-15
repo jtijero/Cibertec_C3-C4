@@ -253,15 +253,29 @@ ping 192.168.10.1 > TODO CORRECTO
 Tener la mayoría de programas simuladores
 > eNSP <
 
+VM de VirtualBox > w10-eNSP > 
 
+dentro de esta vm > Requisitos previos
+> <https://github.com/horserosemilkshake/huawei-ensp
+> para wireshark > https://www.wireshark.org/download/win64/all-versions/ > Wireshark-4.4.6-x64.exe
 
+> configuraciones para tener velocidad de descarga > crear un NAT y en configuración de la vm habilitar ello
 
+En Administrador de VirtualBox (fuera de la VM), haz clic en Archivo > Herramientas > Administrador de red > redes NAT > clic derecho > crear
 
+En conf de VM > Dispositivos > Red > Preferencias de red
+y también >
+ncpa.cpl > Ethernet > Properties > Configure..
 
+> Disable > 
+Checksum Offload (o IPv4 Checksum Offload / TCP Checksum Offload (IPv4))
 
+Large Send Offload v2 (IPv4)
 
+Interrupt Moderation
 
-
+>ok
+> cmd > ipconfig /realse y /flushdns
 
 
 
