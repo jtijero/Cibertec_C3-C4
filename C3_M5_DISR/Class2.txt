@@ -307,3 +307,61 @@ Aprendizaje, Regla para clones enlazados, la vm que se use no se debe abrir desd
 > cerrar > abrir gns3 como Adm >
 > new Project > averiguando.requisitos5
 
+al crear una vm se busca la iso en  > C:\Users\jl2ti\VirtualBox VMs por defecto > usaremos otra carpeta, en mi caso >  C:\Users\jl2ti\Downloads\lcc-cibertec\C3_M5_DISR\IOS_SERVER  
+MEJOR EN VMWARE >
+
+> después se configurara para usar hdd por defecto y crear en todo caso un GNS3 cliente servidor para usar ambas pcs
+
+> crear Windows server en VMWARE
+Abrir VMware Workstation Pro 17
+> Advanced
+> N
+> I Will install the operating system later
+> Microsoft Windows > Windows Server 2019
+> VM Name > WSDIS01 > Location > mkdir en HDD [D:\Cibertec_C3-C4_VMs\C3_M5_DISR\WS2019-DISR1]
+> N > N > N > N > N
+> Size > 60GB > Store virtual disk as a single file
+> N
+> Finish
+Edit virtual machine settings
+	> CD/DVD > Use ISO image file
+	> Ok
+Play > Ctrl G > Any letter
+> Español
+> Data Center Experiencia de Escritorio
+> Avanzado
+> N > N > etc recuerdo menos que antes
+[mas bien ahora que lo hago denuevo > despues de darle Next y se cumpla el segundo check verde cancelar la instalacion, para que al instalar denuevo aparezcan las particiones] [SUPONGO QUE SE PUEDE CLONAR la vm de ADSO (SRVDC01 y con las configuraciones realizadas) o quiza exportarlo, pero hay que hacerlomdenuevo]
+Admin > DISR1234$
+network > si (RAPIDO)
+Power OFF > no se si será necesario crear bosque ´promover.. todo ello, veremos:
+
+Class2.txt ADSO (OPCIONAL o quizá requisito pero para después, divagarias mucho)
+
+
+> En GNS3 >
+> Edit > Preferences > VMWARE VMs > New
+> Edit > Network > check > Allow GNS3 to use any configured VirtualBox adapter
+> OK
+
+> tengo que reiniciar todo > averiguando.requisitos7 [no preguntar por el 6]
+
+> VMware > manage snapshot > delete
+> VirtualBox > Nav Detalles > Instantaneas > clicl derecho > Eliminar
+> GNS3 como administrador
+> minimizar VMware > New Project > Name > averiguando.requisitos6
+> Edit > Prefeences > VMWARE > edit > network > check a Allow GNS3 to override non custom VMWARE adapter etc
+
+> Edit > preferences >VMware principal > Advanced opcions > Configure > 
+> ventana emergente donde dice adding vmnet
+> aply > OK
+
+> se observa después de realizar topología > que el modo headless funciona pero a diferencia de virtual box, en VMware no se muestra explícitamente esta nueva vm WSDIS01-1 corriendo como w10-1 en virtual box
+
+
+
+
+
+
+
+
