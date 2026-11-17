@@ -1,0 +1,58 @@
+> GNS3 > logueo con correo 2
+	> https://www.gns3.com/software/download
+		> apartir de la instalación de gns3 se empezaran a instalar varias cosas, reemplazar npcap > no
+			npcap > https://npcap.com/dist/npcap-1.90.exe
+			> seguir con instalaciones >  correo 2
+				> SolarWinds
+				> TraceNG
+				> Solar-Putty
+				> Solarwinds Engineer´s Toolset > no
+					> Finish > Apply
+						> Cerrar ventana GNS3 WebClient Configuration
+						> Setup Wizard > Run appliances on my local computer
+						> Local server configuration > Host binding > localhost > para usar tailscale
+						  después en Edit > Preferences > Server
+						> N > N >			
+	> https://www.gns3.com/software/download-vm
+
+> IOS_ISOS
+	> https://drive.google.com/drive/u/0/folders/1nY-0OBpvjM3uotrCSySZ3OF4T2x84pUh
+	> solo se descargo 3 hasta el momento
+
+
+> Descarga e instalación de Windows Server 2019
+	> Custom > N > N
+		> I Will install the operading system later > N 
+			> Windows Server 2019 > N
+				VM name > WSDIR02 > Location > mkdir en HDD 
+				> lcc.cibertec > … > 
+					> N > N > Network type > 
+					> Finish
+					Edit virtual machine settings
+						> CD/DVD > Use ISO image file
+						> Ok
+		>> Control G > space > datacenter entorno de escritorio > Administrador DISR1234$
+
+	> Custom > N > N
+		> I Will install the operading system later > N 
+			> Windows Server 2019 > N
+				VM name > SRVDC02 > Location > mkdir en HDD 
+				> lcc.cibertec > … > 
+					> N > N > Network type > 
+					> Finish
+					Edit virtual machine settings
+						> CD/DVD > Use ISO image file
+						> Ok
+		>> Control G > space > datacenter entorno de escritorio > Administrador ADSO1234$
+
+			
+> Descarga de Windows 10 - Media Creation Tool (ISO)
+	> Crear medios de instalación >
+		> Idioma > ISO
+			> VMWARE > WNDS10 > ADSO1234$
+
+> Descargar Descarga de Windows 7 Professional SP1 (ISO)
+	VMWARE > WNDS7 > ADSO1234$
+
+> DEscarga de Windows 11 
+	VMWARE > WNDS11 > ADSO1234$

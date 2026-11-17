@@ -357,6 +357,34 @@ Class2.txt ADSO (OPCIONAL o quizá requisito pero para después, divagarias much
 > aply > OK
 
 > se observa después de realizar topología > que el modo headless funciona pero a diferencia de virtual box, en VMware no se muestra explícitamente esta nueva vm WSDIS01-1 corriendo como w10-1 en virtual box
+Stop all nodes > cuadrado rojo > veo que sigue en verde el switch (eso no quiere decir que este prendido)
+File > Close project
+
+
+añade los routyer restantes de IOS_ROUTER
+> https://drive.google.com/drive/u/1/folders/1nY-0OBpvjM3uotrCSySZ3OF4T2x84pUh
+
+hace denuevo el c7200 y el c1700 > R básico menciona
+
+> en mi caso hice el 2961 en la maquina DELL
+
+New VirtualBox VM template > Edit > doble check > Network activa check
+
+UTILITATIOS or COMPARTIR_LOZANO > PROGRAMAS SIMULADORES > BIRNDA VMWARE 16 > PERO TENEMOS EL VMWARE17 
+
+> IOS_ISOS > SW_L2 > dentro hay un GNS3.VM.VMware.. .zip
+> File > open > clic > Next > N > N..
+> solamente instálalo menciona >
+> Y resulta ser los pasos que ya habriamos realizado con VMWARE al iniciar
+> menciona realizar taller > sesion2
+>enseña a descargar grabaciones con pantalla compartida en blackboard >
+> COnclusiones
+
+
+
+
+
+
 
 
 
